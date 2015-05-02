@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   get 'about' => 'homepage#about'
 
   resources :users, only: [:new, :create]
-    resources :items
+  resources :items
 
 end

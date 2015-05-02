@@ -9,7 +9,8 @@
       %li= link_to "About", about_url 
  
       - if user_signed_in? 
-        %li= link_to "Log out", destroy_user_session_url, method: :delete 
+        %li= link_to "Log out", destroy_user_session_url, method: :delete
+        %Li= link_to "Add item", new_item_url
       - else
         %li= link_to "Sign up", new_user_url
         %li= link_to "Sign in", new_user_session_url

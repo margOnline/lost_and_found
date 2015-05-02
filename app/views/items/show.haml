@@ -1,0 +1,18 @@
+= link_to 'Back', items_path
+.row
+  %div{class: "col-md-offset-2 col-md-8"} 
+    %div{class: "panel panel-default"} 
+      %div{class: "panel-heading center"}
+        = image_tag @item.image.url(:medium) 
+      .panel-body
+        %p 
+          = @item.description
+
+        - if @item.user == current_user
+          = link_to edit_item_path(@item) do
+            %span{class: "icon icon-edit"}
+              Edit
+
+          = link_to @item, method: :delete, data: {confirm: 'Are you sure'} do
+            %span{class: "icon icon-trash"}
+              Delete
