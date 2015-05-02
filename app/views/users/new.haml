@@ -1,1 +1,21 @@
-new.haml
+%ul
+  = form_for @user do |f|
+    - if flash[:error]
+      %p
+        %b= flash[:error]
+
+      - @user.errors.full_messages.each do |msg|
+        %li.question.error
+          .question-title
+            %p
+              %b=msg
+
+    %p
+      = f.label :email
+      = f.email_field :email
+    %p
+      = f.label :password
+      = f.password_field :password
+
+    %p.submit
+      %button.finish{type: "submit"} Sign up
