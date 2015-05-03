@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.all  
+    @items = Item.order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
