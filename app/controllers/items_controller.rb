@@ -44,6 +44,6 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
   def item_params
-    params.require(:item).permit(:image, :description, :user_id)
+    params.require(:item).permit(:image, :description, :user_id, :state)
   end
 end

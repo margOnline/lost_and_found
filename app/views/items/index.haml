@@ -1,8 +1,17 @@
 %div
-
+  
+%h2 Lost Items
 %div{id: "items", class: "transitions-enabled"}
-  - @items.each do |item| 
+  - @lost_items.each do |item| 
     = render partial: 'item', locals: { item: item }
 
 %div{class: "center"}
-  = will_paginate @items, renderer: BootstrapPagination::Rails
+  = will_paginate @lost_items, renderer: BootstrapPagination::Rails
+  
+%h2 Found Items
+%div{id: "items", class: "transitions-enabled"}
+  - @found_items.each do |item| 
+    = render partial: 'item', locals: { item: item }
+
+%div{class: "center"}
+  = will_paginate @found_items, renderer: BootstrapPagination::Rails

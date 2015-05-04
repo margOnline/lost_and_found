@@ -16,6 +16,12 @@
   .form-group
     = f.label :description
     = f.text_field :description, class: "form-control"
+
+  .form-group
+    = f.label :state, 'Lost'
+    = f.radio_button :state, 'lost', class: "form-control"
+    = f.label :state, 'Found'
+    = f.radio_button :state, 'found', class: "form-control"
   
   .form-group
     = f.submit 'Save item', class: "btn btn-primary"

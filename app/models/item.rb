@@ -16,7 +16,7 @@ class Item < ActiveRecord::Base
     where(state: 1)
   end
 
-  def self.found_times
+  def self.found_items
     where(state: 2)
   end
 
