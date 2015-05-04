@@ -7,4 +7,20 @@ class Item < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage/
   validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/]
 
+    enum state: {
+    initial: 0,
+    lost: 1,
+    found: 2,
+    reunited: 3,
+    archived: 4
+  }
+
+  def self.lost_items
+    where(state: 1)
+  end
+
+  def self.found_times
+    where(state: 2)
+  end
+
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502195517) do
+ActiveRecord::Schema.define(version: 20150504091146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,14 +19,16 @@ ActiveRecord::Schema.define(version: 20150502195517) do
   create_table "items", force: :cascade do |t|
     t.text     "description"
     t.integer  "user_id"
-    t.integer  "state"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer  "state",              default: 0, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
+
+  add_index "items", ["state"], name: "index_items_on_state", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
