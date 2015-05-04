@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'about' => 'homepage#about'
 
   resources :users, only: [:new, :create]
-    resources :items, except: [:destroy]
+    resources :items
 
   resources :items, only:[:index, :show]
 end
