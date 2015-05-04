@@ -25,4 +25,12 @@ describe ItemsController do
       expect(response).to render_template(:show)
     end
   end
+
+  describe 'destroy' do
+    it 'displays successfully' do
+      item = FactoryGirl.create(:item)
+      delete :destroy, id: item.id
+      expect(response).to redirect_to items_url
+    end
+  end
 end

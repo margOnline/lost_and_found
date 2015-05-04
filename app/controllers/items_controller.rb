@@ -1,7 +1,10 @@
 class ItemsController < ApplicationController
+  before_action :setup_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @items = Item.order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
+    @lost_items = Item.lost_items.order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
+    @found_items = Item.found_items.order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
+
   end
 
   def new
@@ -17,11 +20,29 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to @item, notice: 'Item was sucessfully updated.'
+    else
+      render action: 'edit'
+    end
+  end
+
+  def destroy
+    @item.destroy
+    redirect_to items_url
+  end
+
   def show
-    @item = Item.find(params[:id])
   end
 
   private
+  def setup_item
+    @item = Item.find(params[:id])
+  end
   def item_params
     params.require(:item).permit(:image, :description, :user_id)
   end
