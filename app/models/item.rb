@@ -2,8 +2,7 @@ class Item < ActiveRecord::Base
   belongs_to :user
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   validates :user, presence: true
-  validates_attachment_content_type :image, :content_type => /\Aimage/ if image_content_type.present?
-  validates_attachment_file_name :image, :matches => [/png\Z/, /jpe?g\Z/] if image_file_name.present?
+  validates_attachment_content_type :image, :content_type => /image/
 
     enum state: {
     initial: 0,

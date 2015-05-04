@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe ItemsController do
+  let(:user) { FactoryGirl.create(:user) }
   describe "#new" do
     it "should display the new form" do
       get :new
@@ -20,7 +21,7 @@ describe ItemsController do
 
   describe 'show' do
     it 'displays successfully' do
-      item = FactoryGirl.create(:item)
+      item = FactoryGirl.create(:item, user_id: user.id)
       get :show, id: item.id
       expect(response).to render_template(:show)
     end
@@ -28,7 +29,7 @@ describe ItemsController do
 
   describe 'destroy' do
     it 'displays successfully' do
-      item = FactoryGirl.create(:item)
+      item = FactoryGirl.create(:item, user_id: user.id)
       delete :destroy, id: item.id
       expect(response).to redirect_to items_url
     end

@@ -11,8 +11,8 @@ describe Item do
       user = FactoryGirl.create(:user)
       lost_item = FactoryGirl.create(:item, user_id: user.id)
       found_item = FactoryGirl.create(:item, user_id: user.id, state: 2)
-      expect(User.lost_items).to eq [lost_item]
-      expect(User.lost_items).not_to include [found_item]
+      expect(Item.lost_items).to eq [lost_item]
+      expect(Item.lost_items).not_to include [found_item]
     end
   end
 end
