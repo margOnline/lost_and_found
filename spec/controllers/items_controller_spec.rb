@@ -4,6 +4,7 @@ describe ItemsController do
   let(:user) { FactoryGirl.create(:user) }
   describe "#new" do
     it "should display the new form" do
+      sign_in user
       get :new
       expect(response).to render_template(:new)
     end
@@ -11,6 +12,7 @@ describe ItemsController do
 
   describe 'create' do
     it 'displays successfully' do
+      sign_in user
       expect{ post :create, item: {
         description: 'whatever'
         }
@@ -21,6 +23,7 @@ describe ItemsController do
 
   describe 'show' do
     it 'displays successfully' do
+      sign_in user
       item = FactoryGirl.create(:item, user_id: user.id)
       get :show, id: item.id
       expect(response).to render_template(:show)
@@ -29,6 +32,7 @@ describe ItemsController do
 
   describe 'destroy' do
     it 'displays successfully' do
+      sign_in user
       item = FactoryGirl.create(:item, user_id: user.id)
       delete :destroy, id: item.id
       expect(response).to redirect_to items_url

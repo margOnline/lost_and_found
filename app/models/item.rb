@@ -4,7 +4,7 @@ class Item < ActiveRecord::Base
   validates :user, presence: true
   validates_attachment_content_type :image, :content_type => /image/
 
-    enum state: {
+  enum state: {
     initial: 0,
     lost: 1,
     found: 2,
@@ -18,6 +18,10 @@ class Item < ActiveRecord::Base
 
   def self.found_items
     where(state: 2)
+  end
+
+  def self.recent
+    Item.order(created_at: :desc).limit(5)
   end
 
 end
