@@ -1,0 +1,10 @@
+%h2
+  Items for Category: 
+  = @category.name.capitalize
+
+- if @category.items.present?
+  - @category.items.each do |item|
+    = render 'items/item', item: item
+- else
+  %p
+    No items for this category have been added.

@@ -1,4 +1,6 @@
 - @categories.each do |cat|
   %h4
-    = cat.name
-    = cat.number_of_items
+    = link_to category_url(cat.id) do
+      = cat.name.capitalize
+      %span{class: "category_count"}
+        = "(#{cat.items.size})"

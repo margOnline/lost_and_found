@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :items
 
   resources :items, only:[:index, :show]
+  resources :categories, only: [:show]
 
   namespace :admin do
     root to: 'admin#index'

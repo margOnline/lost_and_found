@@ -23,8 +23,8 @@ class Image < ActiveRecord::Base
   end
 
 private
-  Paperclip.interpolates :user_id do |attachment, style|
-    attachment.instance.user.id.to_s
+  Paperclip.interpolates :item_id do |attachment, style|
+    attachment.instance.item.id.to_s
   end
 
 end
