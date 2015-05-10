@@ -11,13 +11,28 @@ describe ItemsController do
   end
 
   describe 'create' do
-    it 'displays successfully' do
+    it 'success - with a description' do
       sign_in user
       expect{ post :create, item: {
         description: 'whatever'
         }
       }.to change(Item, :count).by(1)
-      expect(response).to render_template(:show)
+    end
+
+    it 'success - with a category' do
+      sign_in user
+      expect{ post :create, item: {
+        category_id: 1
+        }
+      }.to change(Item, :count).by(1)
+    end
+
+    it 'success - with tags' do
+      sign_in user
+      expect{ post :create, item: {
+        tag_list: ['tag1', 'tag2']
+        }
+      }.to change(Item, :count).by(1)
     end
   end
 

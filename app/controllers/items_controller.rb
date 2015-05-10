@@ -3,8 +3,10 @@ class ItemsController < ApplicationController
   before_action :setup_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    @lost_items = Item.lost_items.order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
-    @found_items = Item.found_items.order(created_at: :desc).paginate(:page => params[:page], :per_page => 10)
+    @lost_items = Item.lost_items.order(created_at: :desc).
+      paginate(:page => params[:page], :per_page => 10)
+    @found_items = Item.found_items.order(created_at: :desc).
+      paginate(:page => params[:page], :per_page => 10)
 
   end
 
@@ -46,7 +48,9 @@ class ItemsController < ApplicationController
   def setup_item
     @item = Item.find(params[:id])
   end
+
   def item_params
-    params.require(:item).permit(:description, :user_id, :state, :tag_list, images_attributes: [:source_file])
+    params.require(:item).permit(:description, :user_id, :state, :category_id,
+      :tag_list, images_attributes: [:source_file])
   end
 end
