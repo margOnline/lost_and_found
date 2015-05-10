@@ -1,8 +1,10 @@
 class Item < ActiveRecord::Base
   belongs_to :user
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_many :images
+
   validates :user, presence: true
-  validates_attachment_content_type :image, :content_type => /image/
+
+  accepts_nested_attributes_for :images
 
   enum state: {
     initial: 0,
@@ -22,6 +24,10 @@ class Item < ActiveRecord::Base
 
   def self.recent
     Item.order(created_at: :desc).limit(5)
+  end
+
+  def profile
+    images.first.thumbnail
   end
 
 end

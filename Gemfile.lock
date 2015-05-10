@@ -41,6 +41,11 @@ GEM
     autoprefixer-rails (5.1.11)
       execjs
       json
+    aws-sdk (1.64.0)
+      aws-sdk-v1 (= 1.64.0)
+    aws-sdk-v1 (1.64.0)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.10)
     builder (3.2.2)
     capybara (2.4.4)
@@ -305,6 +310,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  aws-sdk (< 2.0)
   capybara
   capybara-screenshot
   coffee-rails (= 4.1.0)

@@ -9,9 +9,10 @@
         - @item.errors.full_messages.each do |msg|
           %li= msg
 
-  .form-group
-    = f.label :image
-    = f.file_field :image, class: "form-control"
+  = f.fields_for :images do |f|
+    .form-group
+      = f.label :source_file
+      = f.file_field :source_file, class: "form-control"
   
   .form-group
     = f.label :description

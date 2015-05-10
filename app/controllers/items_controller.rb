@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
   def new
     puts current_user
     @item = current_user.items.build
+    @images = @item.images.build
   end
 
   def create
@@ -46,6 +47,6 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
   def item_params
-    params.require(:item).permit(:image, :description, :user_id, :state)
+    params.require(:item).permit( :description, :user_id, :state, images_attributes: [:source_file])
   end
 end

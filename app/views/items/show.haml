@@ -3,7 +3,10 @@
   %div{class: "col-md-offset-2 col-md-8"} 
     %div{class: "panel panel-default"} 
       %div{class: "panel-heading center"}
-        = image_tag @item.image.url(:medium) 
+        - if @item.images.any?
+          - @item.images.each do |image|
+            = image_tag image.thumbnail
+            
       .panel-body
         %p 
           = @item.description
