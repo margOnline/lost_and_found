@@ -24,6 +24,9 @@
     = f.label :state, 'Found'
     = f.radio_button :state, 'found', class: "form-control"
   .form-group
+    = f.label :category_id, 'Category'
+    = f.select(:category_id, Category.all.collect {|cat| [ cat.name.capitalize, cat.id ] }, { include_blank: true })
+  .form-group
     = f.label :tag_list, 'Tags (separated by commas)'
     = f.text_field :tag_list, class: "form-control"
 

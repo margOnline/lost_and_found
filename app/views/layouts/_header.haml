@@ -2,12 +2,9 @@
   = link_to "Home", root_url, class: "navbar-brand"
   #bs-example-navbar-collapse-1{class: "collapse navbar-collapse"}
     %ul{class: "nav navbar-nav navbar-right"}
-      %li
-        = link_to root_path do 
-          %span{class: "icon icon-home"} Home
-          
+     
       %li= link_to "About", about_url 
- 
+      
       - if user_signed_in? 
         %li= link_to "Log out", destroy_user_session_url, method: :delete
         %li= link_to "Add item", new_item_url
