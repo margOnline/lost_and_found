@@ -23,6 +23,9 @@
     = f.radio_button :state, 'lost', class: "form-control"
     = f.label :state, 'Found'
     = f.radio_button :state, 'found', class: "form-control"
-  
+  .form-group
+    = f.label :tag_list, 'Tags (separated by commas)'
+    = f.text_field :tag_list, class: "form-control"
+
   .form-group
     = f.submit 'Save item', class: "btn btn-primary"

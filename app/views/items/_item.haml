@@ -1,13 +1,10 @@
 .col-md-3
   %div{class: "box panel panel-default"}
-    = link_to image_tag(item.image.url(:medium)), item 
+    = link_to image_tag(item.profile), item 
     %div{class: "panel-body"}
       = item.description 
 
       %br 
-      %strong
-        = item.user.email if item.user
-
       - if item.user == current_user 
         %div{class: "actions"}
           = link_to edit_item_path(item) do 
@@ -16,3 +13,8 @@
           = link_to item, method: :delete, data: {confirm: 'Are you sure'} do 
             %span{class: "fa fa-trash"}
               Delete
+
+      - if item.tag_list.count > 0
+        %p 
+          tags: 
+          = item.tag_list
