@@ -1,0 +1,8 @@
+%nav.navbar{ role: "navigation" }
+  %ul.navbar
+
+    %li{ class: selected_if_current?(admin_categories_url) }
+      = link_to "Categories", admin_categories_url
+
+    %li{ class: selected_if_current?(admin_tags_url) }
+      = link_to "Tags", admin_tags_url

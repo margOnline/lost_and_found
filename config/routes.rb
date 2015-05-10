@@ -13,5 +13,6 @@ Rails.application.routes.draw do
     root to: 'admin#index'
 
     resources :categories
+    resources :tags
   end
 end
