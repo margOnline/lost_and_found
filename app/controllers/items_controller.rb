@@ -25,13 +25,22 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.user == current_user
+      render :edit
+    else
+      redirect_to new_user_session_url
+    end
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to @item, notice: 'Item was sucessfully updated.'
+    if @item.user == current_user
+      if @item.update(item_params)
+        redirect_to @item, notice: 'Item was sucessfully updated.'
+      else
+        render action: 'edit'
+      end
     else
-      render action: 'edit'
+      redirect_to new_user_session_url
     end
   end
 
