@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index, :show]
   before_action :setup_item, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
   end
 
   def new
-    puts current_user
     @item = current_user.items.build
     @images = @item.images.build
   end
@@ -26,13 +25,22 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.user == current_user
+      render :edit
+    else
+      redirect_to new_user_session_url
+    end
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to @item, notice: 'Item was sucessfully updated.'
+    if @item.user == current_user
+      if @item.update(item_params)
+        redirect_to @item, notice: 'Item was sucessfully updated.'
+      else
+        render action: 'edit'
+      end
     else
-      render action: 'edit'
+      redirect_to new_user_session_url
     end
   end
 

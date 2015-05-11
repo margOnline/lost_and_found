@@ -41,7 +41,7 @@ group :development, :test do
   gem "fuubar"
   gem 'poltergeist'
   gem 'pry-rails'
-  gem 'rspec-rails', '~>3.0.0'
+  gem 'rspec-rails', '~> 3.1'
   gem 'shoulda-matchers', require: false
 
 end

@@ -4,5 +4,10 @@ FactoryGirl.define do
   factory :user do
     email    { |u| "#{FactoryGirl.generate(:username)}@example.com" }
     password 'password'
+
+    trait :admin do
+      admin true
+    end
+
   end
 end

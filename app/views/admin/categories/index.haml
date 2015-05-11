@@ -1,6 +1,34 @@
-- @categories.each do |cat|
-  %h4
-    = link_to category_url(cat.id) do
-      = cat.name.capitalize
-      %span{class: "category_count"}
-        = "(#{cat.items.size})"
+%div{class: "col-md-4 col-md-offset-2"}
+  - @categories.each do |cat|
+    %h4
+      = link_to category_url(cat.id) do
+        = cat.name.capitalize
+        %span{class: "category_count"}
+          = "(#{cat.items.size})"
+
+%div{class: "col-md-4"}
+  %h3 New Category
+
+  = form_for [:admin, @category], remote: true, html: {class: "disabled"} do |f|
+    - if @category.errors.any? 
+      #error_explanation
+        %h2
+          = pluralize(@category.errors.count, "error") 
+          prohibited this category from being saved:
+
+        %ul
+          - @category.errors.full_messages.each do |msg| 
+            %li
+              = msg
+    
+    .form-group
+      = f.label :name 
+      = f.text_field :name, class: "form-control"
+    .form-group
+      .controls
+        = f.button '+ Add', class: 'btn btn-success save loading-state'
+        .btn.btn-warning.cancel.admin-cancel
+          Cancel
+.row
+  .col-md-4
+    = link_to 'Back', admin_categories_url
