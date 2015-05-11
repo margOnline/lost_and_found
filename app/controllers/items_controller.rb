@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:index, :show]
   before_action :setup_item, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -11,7 +11,6 @@ class ItemsController < ApplicationController
   end
 
   def new
-    puts current_user
     @item = current_user.items.build
     @images = @item.images.build
   end
