@@ -24,6 +24,14 @@ class Admin::CategoriesController < AdminController
     end
   end
 
+  def destroy
+    if @category.destroy
+      redirect_to admin_categories_path
+    else
+      render :edit
+    end
+  end
+
   private
   def categories_params
     params.require(:category).permit(:name)
