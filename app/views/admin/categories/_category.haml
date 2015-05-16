@@ -1,0 +1,5 @@
+%h4
+  = link_to category_url(category.id) do
+    = category.name.capitalize
+    %span{class: "category_count"}
+      = "(#{category.items.size})"

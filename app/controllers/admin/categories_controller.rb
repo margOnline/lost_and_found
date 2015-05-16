@@ -17,7 +17,10 @@ class Admin::CategoriesController < AdminController
   def create
     @category = Category.new(categories_params)
     if @category.save
-      redirect_to admin_categories_url
+      respond_to do |format|
+        format.html { }
+        format.js { }
+      end
     else
       flash[:error] = "Correct the errors as indicated"
       render :new
