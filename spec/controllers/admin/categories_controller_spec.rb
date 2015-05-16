@@ -16,9 +16,9 @@ describe Admin::CategoriesController do
     describe 'create' do
       describe "successfully" do
         it "saves the new category" do
-          expect {post :create, category: { name: 'whatever' }
+          expect {post :create, format: 'js', category: { name: 'whatever' }
             }.to change(Category, :count).by(1)
-          expect(response).to redirect_to admin_categories_url
+          expect(response).to be_success
         end
       end
       describe "with errors" do
