@@ -1,0 +1,10 @@
+// hide add category form
+$('.add-category-form').hide();
+
+// insert new category
+$('.category-list').last.append('<h4>category</h4>')
+
+// set form values to blank
+$('.add-category-form.input').each(function() {
+  $(this).val('');
+})

@@ -1,8 +1,14 @@
 $ ->
-  # show new category
   $(document).on 'click', '.add-category', ->
-    $('.category-add').show().find('form').removeClass('disabled').find('.save, .cancel').show().end().hide()
+    $('.add-category-form').show().removeClass('disabled')
+    $(this).hide()
 
-  $(document).on 'click', '.category-add .cancel', ->
-    $('.category-add').hide()
-    $(this).closest('.controls').find('.save').removeClass('loading')
+  $(document).on 'click', '.category-cancel', ->
+    $('.add-category-form').hide()
+    $('.add-category').show()
+
+  $(document).on 'click', '.delete-category', ->
+    $(this).closest('li').hide()
+
+  $(document).on "ajax:success", ".delete-category", ->
+    $(this).closest('li').remove()
