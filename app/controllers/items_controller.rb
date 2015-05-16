@@ -1,13 +1,12 @@
 class ItemsController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
-  before_action :setup_item, only: [:show, :edit, :update, :destroy]
+  before_action :setup_item, only: [:show, :edit, :update, :destroy, :matching]
 
   def index
     @lost_items = Item.lost_items.order(created_at: :desc).
       paginate(:page => params[:page], :per_page => 10)
     @found_items = Item.found_items.order(created_at: :desc).
       paginate(:page => params[:page], :per_page => 10)
-
   end
 
   def new
@@ -18,7 +17,7 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.build(item_params)
     if @item.save
-        redirect_to @item, notice: 'item was sucessfully created.'
+        redirect_to matching_items_url(@item), notice: 'item was sucessfully created.'
     else
       render action: 'new'
     end
@@ -50,6 +49,10 @@ class ItemsController < ApplicationController
   end
 
   def show
+  end
+
+  def matching
+    @matches = @item.matches
   end
 
   private

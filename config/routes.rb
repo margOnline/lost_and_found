@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root 'homepage#index'
   get 'about' => 'homepage#about'
+  get 'matching_items/:id' => 'items#matching', as: 'matching_items'
 
   resources :users, only: [:new, :create]
     resources :items

@@ -33,4 +33,9 @@ class Item < ActiveRecord::Base
     images.first.thumbnail
   end
 
+  def matches
+    @opposite_state = lost? ? 2 : 1
+    Item.tagged_with(tag_list, any: true).where(state: @opposite_state)
+  end
+
 end
