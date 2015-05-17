@@ -1,0 +1,9 @@
+- @tags = Item.tag_counts_on(:tags)
+.col-md-3
+  .panel.panel-default
+    .panel-heading
+      .panel-title
+        tags
+    .panel-body 
+      - tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| 
+        = link_to tag.name, tag_url(tag), class: css_class 

@@ -7,7 +7,7 @@
       %br 
       - if item.user == current_user 
         %div{class: "actions"}
-          = link_to edit_item_path(item) do 
+          = link_to edit_item_url(item) do 
             %span{class: "fa fa-edit"} 
               Edit
           = link_to item, method: :delete, data: {confirm: 'Are you sure'} do 
@@ -17,4 +17,5 @@
       - if item.tag_list.count > 0
         %p 
           tags: 
-          = item.tag_list
+          - item.tag_list.each do |tag|
+            = link_to tag, tag_url(tag)

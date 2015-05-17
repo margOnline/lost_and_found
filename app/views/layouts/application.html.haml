@@ -17,6 +17,9 @@
   %body
     %div{class: "site-nav c9 med-c12"}
       .container
-        = render 'layouts/header' 
-        = yield
+        = render 'layouts/header'
+        .col-md-12
+          .row
+            = yield
+            = render 'shared/tag_cloud'
         = render 'layouts/footer' 
