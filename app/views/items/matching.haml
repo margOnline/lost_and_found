@@ -1,0 +1,12 @@
+- if @matches.any?
+  %h4
+    = opposite_state_of(@item).capitalize
+    items matching
+    = @item.description.capitalize
+
+  %div{id: "items", class: "transitions-enabled"}
+    - @matches.each do |item| 
+      = render partial: 'item', locals: { item: item }
+- else
+  No items match 
+  = @item.description

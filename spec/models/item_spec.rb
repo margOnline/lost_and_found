@@ -34,4 +34,15 @@ describe Item do
       end
     end
   end
+
+  describe "#matches" do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:lost_item) { FactoryGirl.create(:item, user_id: user.id).tag_list.add('bag') }
+    let(:found_item) { FactoryGirl.create(:item, user_id: user.id, state: 2).tag_list.add('bag') }
+
+    def method_name
+      get :matching, id: lost_item.id
+      expect(response).to eq [found_item]
+    end
+  end
 end

@@ -6,6 +6,6 @@
   %h3
     = yield :page_title
 
-%div
+.col-md-9
   - @items.each do |item|
     = render 'items/item', item: item
