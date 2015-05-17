@@ -1,24 +1,42 @@
-%ul
-  = form_for @user do |f|
-    - if flash[:error]
+.col-md-4
+  .panel.panel-success
+    .panel-heading
+      .panel-title
+        Sign up with social media
+    .panel-body 
       %p
-        %b= flash[:error]
+        = link_to image_tag("twitter_signup.jpeg"), user_omniauth_authorize_path(:twitter)
+      %p
+        = link_to image_tag("fb_signup-sm.jpg"), user_omniauth_authorize_path(:facebook)
 
-      - @user.errors.full_messages.each do |msg|
-        %li.question.error
-          .question-title
-            %p
-              %b=msg
+.col-md-4
+  .panel.panel-success
+    .panel-heading
+      .panel-title
+        Sign up with email and password
+    .panel-body 
+      = form_for @user do |f|
+        - if flash[:error]
+          %p
+            %b= flash[:error]
+          %ul
+            - @user.errors.full_messages.each do |msg|
+              %li.question.error
+                .question-title
+                  %p
+                    %b=msg
+        %p
+          = f.label :email
+          = f.email_field :email, autofocus: true
+        %p
+          = f.label :name
+          = f.text_field :name, autofocus: true
+        %p
+          = f.label :password
+          = f.password_field :password, autocomplete: "off"
+        %p
+          = f.label :password_confirmation
+          = f.password_field :password, autocomplete: "off"
 
-    %p
-      = f.label :email
-      = f.email_field :email, autofocus: true
-    %p
-      = f.label :password
-      = f.password_field :password, autocomplete: "off"
-    %p
-      = f.label :password_confirmation
-      = f.password_field :password, autocomplete: "off"
-
-    %p.submit
-      %button.finish{type: "submit"} Sign up
+        %p.submit
+          %button.finish{type: "submit"} Sign up

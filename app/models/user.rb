@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :omniauthable, :registerable, 
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates email:, on: :update
+  validates :email, format: { without: TEMP_EMAIL_REGEX }, on: :update
 
   accepts_nested_attributes_for :items
 

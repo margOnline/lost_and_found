@@ -356,7 +356,6 @@ DEPENDENCIES
   jquery-rails
   less-rails
   nokogiri
-  omniauth
   omniauth-facebook
   omniauth-twitter
   paperclip (~> 4.2)
