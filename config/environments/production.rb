@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.app.domain = "lost-and-found.com"
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -48,12 +48,6 @@ Rails.application.configure do
   # when problems arise.
   config.log_level = :debug
 
-  # Prepend all log lines with the following tags.
-  # config.log_tags = [ :subdomain, :uuid ]
-
-  # Use a different logger for distributed setups.
-  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
-
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
@@ -76,4 +70,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { host: config.app_domain }
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: '587',
+    enable_starttls_auto: true,
+    user_name: 'someuser',
+    user_password: 'password',
+    authentication: :plain,
+    domain: 'somedomain.com'
+  }
 end
