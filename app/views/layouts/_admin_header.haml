@@ -1,8 +1,11 @@
-%nav.navbar{ role: "navigation" }
-  %ul.navbar
+%nav{class: "admin navbar navbar-inverse navbar-default"}
+  = link_to "Home", root_url, class: "navbar-brand", role: "navigation"
 
-    %li{ class: selected_if_current?(admin_categories_url) }
+  %ul{class: "nav navbar-nav navbar-right"}
+
+    %li 
       = link_to "Categories", admin_categories_url
 
-    %li{ class: selected_if_current?(admin_tags_url) }
+    %li 
       = link_to "Tags", admin_tags_url
+      
