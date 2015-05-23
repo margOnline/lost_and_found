@@ -1,4 +1,3 @@
-- @items.each do |item|
-  = render 'items/item', item: item
-.row
-  = render 'shared/tag_cloud'
+.col-md-9
+  - @items.each do |item|
+    = render 'items/item', item: item
