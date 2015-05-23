@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.app.domain = "lost-and-found.com"
+  config.app_domain = "mau-lost-and-found.herokuapp.com"
   # Code is not reloaded between requests.
   config.cache_classes = true
 
