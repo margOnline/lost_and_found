@@ -33,6 +33,14 @@ describe Item do
         expect(Item.recent).to eq [new_item, old_item]
       end
     end
+
+    describe ".united" do
+      it "returns items that have been matched" do
+        non_united_item = FactoryGirl.create(:item, user_id: user.id)
+        united_item = FactoryGirl.create(:item, user_id: user.id, state: 3)
+        expect(Item.united).to eq [united_item]
+      end
+    end
   end
 
   describe "#matches" do

@@ -32,17 +32,11 @@ describe Admin::CategoriesController do
   end
 
   context "with signed in user, not admin" do
+    let(:category) {FactoryGirl.create(:category)}
     let(:user) { FactoryGirl.create( :user )}
     before { sign_in user }
 
     describe "#index" do
-      it "redirects to the home page" do
-        get :index
-        expect(response).to redirect_to root_url
-      end
-    end
-
-    describe "#show" do
       it "redirects to the home page" do
         get :index
         expect(response).to redirect_to root_url
@@ -65,14 +59,8 @@ describe Admin::CategoriesController do
   end
 
   context "with no one signed in" do
+    let(:category) {FactoryGirl.create(:category)}
     describe "#index" do
-      it "redirects to the home page" do
-        get :index
-        expect(response).to redirect_to root_url
-      end
-    end
-
-    describe "#show" do
       it "redirects to the home page" do
         get :index
         expect(response).to redirect_to root_url

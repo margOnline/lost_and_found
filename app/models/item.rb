@@ -13,7 +13,7 @@ class Item < ActiveRecord::Base
     initial: 0,
     lost: 1,
     found: 2,
-    reunited: 3,
+    united: 3,
     archived: 4
   }
 
@@ -27,6 +27,10 @@ class Item < ActiveRecord::Base
 
   def self.recent
     Item.order(created_at: :desc).limit(5)
+  end
+
+  def self.united
+    where(state: 3)
   end
 
   def profile

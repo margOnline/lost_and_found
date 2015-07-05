@@ -1,4 +1,5 @@
 class Admin::AdminController < ApplicationController
+  authenticate_user!
   before_action :authorize_admin_user
   layout 'admin'
 
@@ -7,7 +8,7 @@ class Admin::AdminController < ApplicationController
 
   private
   def authorize_admin_user
-    user_signed_in? && current_user.admin?
+    return unless user_signed_in? && current_user.admin?
   end
   
 end

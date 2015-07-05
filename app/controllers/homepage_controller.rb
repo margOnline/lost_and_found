@@ -5,4 +5,8 @@ class HomepageController < ApplicationController
   
   def about
   end
+
+  def slice
+    @items = Item.all
+  end
 end

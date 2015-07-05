@@ -5,10 +5,12 @@ $ ->
 
   $(document).on 'click', '.category-cancel', ->
     $('.add-category-form').hide()
+    $('input#category_name').val("")
     $('.add-category').show()
 
-  $(document).on 'click', '.delete-category', ->
-    $(this).closest('li').hide()
-
   $(document).on "ajax:success", ".delete-category", ->
-    $(this).closest('li').remove()
+    $(this).closest('h4').remove()
+
+  $(document).on "click", ".save-category", (data)->
+    $('.add-category-form').hide()
+    $('.add-category').show()

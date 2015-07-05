@@ -1,7 +1,2 @@
-$('.add-category-form').hide();
-$('.category-list').append("<h4><%= @category.name %></h4>");
+$('.category-list').append("<%= j render 'category', category: @category %>")
 
-// set form values to blank
-$('.add-category-form.input').each(function() {
-  $(this).val('');
-})

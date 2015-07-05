@@ -5,7 +5,7 @@
       = item.description 
 
       %br 
-      - if item.user == current_user 
+      - if current_user && item.user == current_user 
         %div{class: "actions"}
           = link_to edit_item_url(item) do 
             %span{class: "fa fa-edit"} 
